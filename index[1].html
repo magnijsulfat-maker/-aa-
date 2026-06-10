@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кибернетический Терминал Управления</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Главная интерактивная 3D-панель -->
+    <main class="terminal-container" id="terminal">
+        <header class="terminal-header">
+            <h1>КИБЕР-КОНСОЛЬ СИНТЕЗА</h1>
+            <div class="led-indicator" id="mainLed"></div>
+        </header>
+
+        <!-- Электронное табло данных -->
+        <section class="digital-display">
+            <div class="display-row">СТАТУС СИСТЕМЫ: <span id="txtStatus" class="highlight">АКТИВЕН</span></div>
+            <div class="display-row">ГЕНЕРАТОР ЗВУКА: <span id="txtFreq" class="highlight">0 Гц</span></div>
+            <div class="display-row">АКТИВНЫЙ РЕЖИМ: <span id="txtMode" class="highlight">СТАНДАРТ</span></div>
+        </section>
+
+        <!-- Блок управления звуковыми частотами -->
+        <section class="synth-pads">
+            <button class="pad-btn" data-note="261.63">ТОН А</button>
+            <button class="pad-btn" data-note="329.63">ТОН Б</button>
+            <button class="pad-btn" data-note="392.00">ТОН В</button>
+            <button class="pad-btn" data-note="523.25">ТОН Г</button>
+        </section>
+
+        <!-- Функциональный тумблер изменения интерфейса -->
+        <footer class="terminal-footer">
+            <button id="btnToggleMode" class="toggle-btn">ПЕРЕКЛЮЧИТЬ МОДУЛЬ</button>
+        </footer>
+    </main>
+
+    <script src="script.js" defer></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
